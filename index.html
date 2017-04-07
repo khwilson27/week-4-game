@@ -23,77 +23,89 @@
             </div>
       </div>
 
-      <div class="container">
+      <div class="container-fluid">
             <div class="row" id="yourCharImg">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <ul class="imgGrid">
-                    <li>
-                        <div id="ryan" class="character"><img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg"><p class="charName">Ryan Gosling</p></div>
-                    </li>
-                    <li>
-                        <div id="emma" class="character"><img src="assets/images/emmastone.jpg" alt="Emma Stone" class="img-thumbnail characterImg"><p class="charName">Emma Stone</p></div>
-                    </li>
-                    <li>
-                        <div id="john" class="character"><img src="assets/images/johnlegend.jpg" alt="John Legend" class="img-thumbnail characterImg"><p class="charName">John Legend</p></div>
-                    </li>
-                    <li>
-                        <div id="hollywood" class="character"><img src="assets/images/hollywood.jpg" alt="The Hollywood Dream" class="img-thumbnail characterImg"><p class="charName">The Hollywood Dream</p></div>
-                    </li>
-                </ul>
+                      <h2>Your Character</h2>
+
+                      <figure id="ryan">
+                        <img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg">
+                        <figcaption>
+                          <p class="charName">Ryan Gosling</p>
+                          <p class="hp">HP: 150</p>
+                        </figcaption>
+                      </figure>
+
+                      <figure id="emma">
+                        <img src="assets/images/emmastone.jpg" alt="Emma Stone" class="img-thumbnail characterImg">
+                        <figcaption>
+                          <p class="charName">Emma Stone</p>
+                          <p class="hp">HP: 150</p>
+                        </figcaption>
+                      </figure>
+
+                      <figure id="john">
+                        <img src="assets/images/johnlegend.jpg" alt="John Legend" class="img-thumbnail characterImg">
+                        <figcaption>
+                          <p class="charName">John Legend</p>
+                          <p class="hp">HP: 150</p>
+                        </figcaption>
+                      </figure>
+
+                      <figure id="hollywood">
+                        <img src="assets/images/hollywood.jpg" alt="The Hollywood Dream" class="img-thumbnail characterImg">
+                        <figcaption>
+                          <p class="charName hollywoodName">The Hollywood Dream</p>
+                          <p class="hp">HP: 150</p>
+                        </figcaption>
+                      </figure>
               </div>
             </div>
 
-            <div class="row" id="yourCharText">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <h2>Your Character</h2>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="toAttackImg">
-                  <div id="ryan" class="character"><img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg"><p class="charName">Ryan Gosling</p></div>
-                  <div id="ryan" class="character"><img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg"><p class="charName">Ryan Gosling</p></div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="toAttackText">
-                  <h2>Enemies Available to Attack</h2>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="toFightImg">
-               
-              </div>
-            </div>
 
             <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="toFightText">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" id="toAttackImg">
+                      <h2>Enemies Available to Attack</h2>
+
+                      <figure>
+                        <img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg enemiesAvailable">
+                        <figcaption>
+                          <p class="charName">Ryan Gosling</p>
+                          <p class="hp">HP: 150</p>
+                        </figcaption>
+                      </figure>
+                      <figure>
+                        <img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg enemiesAvailable">
+                        <figcaption>
+                          <p class="charName">Ryan Gosling</p>
+                          <p class="hp">HP: 150</p>
+                        </figcaption>
+                      </figure>
+
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" id="toFight">
                   <h2>Battle Section</h2>
                   <button type="button" class="btn btn-danger">Attack</button>
-                  <h2>Defender</h2>
+                  <button type="button" class="btn btn-secondary">Restart</button>
+                  <h2 id="defenderText">Defender</h2>
+
+                      <figure>
+                        <img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg defender">
+                        <figcaption>
+                          <p class="charName">Ryan Gosling</p>
+                          <p class="hp">HP: 150</p>
+                        </figcaption>
+                      </figure>
               </div>
+
             </div>
-
-            <div class="row">
-              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" id="defenderImg">
-                <div id="defenderImgDiv">
-                  <div id="ryan" class="character"><img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg"><p class="charName">Ryan Gosling</p></div>
-                </div>
-                <button type="button" class="btn btn-secondary">Restart</button>
-              </div>
-            </div>
-
-
-
-
 
       </div>
 
 
       <!-- footer -->  
-      <nav class="navbar navbar-default navbar-fixed-bottom" id="bottom">
+      <nav class="navbar navbar-default navbar-fixed-bottom">
           <div class="container">
               <p>&copy; Copyright 2017 Kevin Wilson</p>
           </div>
