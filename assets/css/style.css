@@ -17,7 +17,8 @@ h2 {
 }
 
 #defenderText {
-	width: 30%;
+	width: 300px;
+	overflow: auto;
 }
 
 .pageTitle {
@@ -34,7 +35,7 @@ h2 {
 
 }
 
-figure {
+.click {
   margin:2px;
   display:inline-block;
   vertical-align:top;
@@ -50,12 +51,8 @@ figure {
 	margin-bottom: -30px;
 	border-style: solid;
 	border-color: green;
-	border-width: 5px;
+	border-width: 4px;
 	background-color: rgba(255, 255, 255, 0.7);
-}
-
-.character {
-
 }
 
 .charName {
@@ -78,7 +75,7 @@ figure {
 	font-size: 18px;
 	position: relative;
 	top: -30px;
-	left: 125px;
+	left: 145px;
 }
 
 .enemiesAvailable {
@@ -89,22 +86,6 @@ figure {
 .defender {
 	border-color: black;
 }
-
-
-#ryan {
-}
-
-#emma {
-}
-
-#john {
-}
-
-#hollywood {
-}
-
-
-
 
 .navbar-fixed-bottom {
 	text-align: center;
