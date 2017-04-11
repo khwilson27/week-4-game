@@ -22,7 +22,7 @@ $(document).ready(function() {
 
         for (var i=0; i<charactersTarget.length; i++) {
             var currentHP = parseInt(charactersTarget[i].find(".figure").attr("data-hp"));
-            charactersTarget[i].find(".hp").text(currentHP);
+            charactersTarget[i].find(".hp").text("HP: " + currentHP);
         }
 
     }
