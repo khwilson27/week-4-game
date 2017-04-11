@@ -48,7 +48,7 @@ h2 {
 	padding: 20px;
 	margin: 5px;
 	margin-top: 0px;
-	margin-bottom: -30px;
+	margin-bottom: 0px;
 	border-style: solid;
 	border-color: green;
 	border-width: 4px;
@@ -58,9 +58,10 @@ h2 {
 .charName {
 	font-family: 'Calibri', 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 	font-weight: bold;
+	height:30px;
 	font-size: 18px;
 	position: relative;
-	top: -170px;
+	top: -200px;
 	left: 110px;
 }
 
@@ -73,9 +74,15 @@ h2 {
 	font-family: 'Calibri', 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
 	font-weight: bold;
 	font-size: 18px;
+	height: 30px;
 	position: relative;
-	top: -30px;
+	top: -25px;
 	left: 145px;
+}
+
+.combatText {
+	color: white;
+	font-size: 25px;
 }
 
 .enemiesAvailable {

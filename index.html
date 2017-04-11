@@ -5,7 +5,7 @@
     <title>La La Land: Turn-Based Battle</title>
 
     <link rel="icon" href="assets/images/favicon.jpg" type="image/gif" sizes="16x16">
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+<!--     <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> -->
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -28,65 +28,75 @@
       </div>
 
       <div class="container-fluid">
-            <div class="row" id="yourCharImg">
+            <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                      <h2>Your Character</h2>
+                      <h2>Your Character</h2>                     
+                        <div id="yourCharImg">
 
-                        <div id="ryan" class="click">
-                          <figure class="figure" data-hp="150" data-ap="10" data-cap="25" data-your="0" data-attack="0" data-defender="0">
-                            <img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg">
-                            <figcaption>
-                              <p class="charName">Ryan Gosling</p>
-                              <p class="hp">150</p>
-                            </figcaption>
-                          </figure>
-                        </div>
+                              <div id="ryan" class="click clickYour">
+                                <figure class="figure" data-hp=150 data-ap=10 data-cap=25 data-your=0 data-attack=0 data-defender=0>
+                                  <img src="assets/images/ryangosling.jpg" alt="Ryan Gosling" class="img-thumbnail characterImg">
+                                  <figcaption>
+                                    <p class="charName">Ryan Gosling</p>
+                                    <p class="hp">150</p>
+                                  </figcaption>
+                                </figure>
+                              </div>
 
-                        <div id="emma" class="click">
-                          <figure class="figure" data-hp="130" data-ap="15" data-cap="20" data-your="0" data-attack="0" data-defender="0">
-                            <img src="assets/images/emmastone.jpg" alt="Emma Stone" class="img-thumbnail characterImg">
-                            <figcaption>
-                              <p class="charName">Emma Stone</p>
-                              <p class="hp">130</p>
-                            </figcaption>
-                          </figure>
-                        </div>  
+                              <div id="emma" class="click clickYour">
+                                <figure class="figure" data-hp=130 data-ap=15 data-cap=20 data-your=0 data-attack=0 data-defender=0>
+                                  <img src="assets/images/emmastone.jpg" alt="Emma Stone" class="img-thumbnail characterImg">
+                                  <figcaption>
+                                    <p class="charName">Emma Stone</p>
+                                    <p class="hp">130</p>
+                                  </figcaption>
+                                </figure>
+                              </div>  
 
-                        <div id="john" class="click">
-                          <figure class="figure" data-hp="170" data-ap="5" data-cap="5" data-your="0" data-attack="0" data-defender="0">
-                            <img src="assets/images/johnlegend.jpg" alt="John Legend" class="img-thumbnail characterImg">
-                            <figcaption>
-                              <p class="charName">John Legend</p>
-                              <p class="hp">170</p>
-                            </figcaption>
-                          </figure>
-                        </div>
+                              <div id="john" class="click clickYour">
+                                <figure class="figure" data-hp=170 data-ap=5 data-cap=5 data-your=0 data-attack=0 data-defender=0>
+                                  <img src="assets/images/johnlegend.jpg" alt="John Legend" class="img-thumbnail characterImg">
+                                  <figcaption>
+                                    <p class="charName">John Legend</p>
+                                    <p class="hp">170</p>
+                                  </figcaption>
+                                </figure>
+                              </div>
 
-                        <div id="hollywood" class="click">
-                          <figure class="figure" data-hp="200" data-ap="4" data-cap="7" data-your="0" data-attack="0" data-defender="0">
-                            <img src="assets/images/hollywood.jpg" alt="The Hollywood Dream" class="img-thumbnail characterImg">
-                            <figcaption>
-                              <p class="charName hollywoodName">The Hollywood Dream</p>
-                              <p class="hp">200</p>
-                            </figcaption>
-                          </figure>
+                              <div id="hollywood" class="click clickYour">
+                                <figure class="figure" data-hp=200 data-ap=4 data-cap=7 data-your=0 data-attack=0 data-defender=0>
+                                  <img src="assets/images/hollywood.jpg" alt="The Hollywood Dream" class="img-thumbnail characterImg">
+                                  <figcaption>
+                                    <p class="charName hollywoodName">The Hollywood Dream</p>
+                                    <p class="hp">200</p>
+                                  </figcaption>
+                                </figure>
+                              </div>
+
                         </div>
               </div>
             </div>
 
 
             <div class="row">
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" id="toAttack">
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
                       <h2>Enemies Available to Attack</h2>
-<!--                  Available enemies images go here -->
+                      <div id="toAttack">
+                      <!-- Available enemies images go here -->
+                      </div>
+
               </div>
 
-              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6" id="toFight">
-                  <h2>Battle Section</h2>
-                  <button type="button" class="btn btn-danger">Attack</button>
-                  <button type="button" class="btn btn-secondary">Restart</button>
-                  <h2 id="defenderText">Defender</h2>
- <!--                 Defender images go here -->
+              <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+                      <h2>Battle Section</h2>
+                      <button type="button" class="btn btn-danger attackBtn">Attack</button>
+                      <button type="button" class="btn btn-secondary restartBtn">Restart</button>
+                      <h2 id="defenderText">Defender</h2>
+                      <div id="toFight">
+                       <!-- Defender images go here -->
+                      </div>
+                      <p class="combatText"></p>
+
               </div>
 
             </div>
