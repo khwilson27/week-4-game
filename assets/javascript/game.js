@@ -1,184 +1,198 @@
+$(document).ready(function() {
 
-// define variables
-var emmaHtml = $("#emma").html();
-var ryanHtml = $("#ryan").html();
-var johnHtml = $("#john").html();
-var hollywoodHtml = $("#hollywood").html();
+    // define global variables
+    var emmaHtml = $("#emma").html();
+    var ryanHtml = $("#ryan").html();
+    var johnHtml = $("#john").html();
+    var hollywoodHtml = $("#hollywood").html();
+    var originalHtml = $("#yourCharImg").html();
 
-var emmaTarget = $("#emma");
-var ryanTarget = $("#ryan");
-var johnTarget = $("#john");
-var hollywoodTarget = $("#hollywood");
+    var emmaTarget = $("#emma");
+    var ryanTarget = $("#ryan");
+    var johnTarget = $("#john");
+    var hollywoodTarget = $("#hollywood");
 
-var charactersHtml = [emmaHtml, ryanHtml, johnHtml, hollywoodHtml];
-var charactersTarget = [emmaTarget, ryanTarget, johnTarget, hollywoodTarget];
+    var charactersHtml = [emmaHtml, ryanHtml, johnHtml, hollywoodHtml];
+    var charactersTarget = [emmaTarget, ryanTarget, johnTarget, hollywoodTarget];
 
-var yourCharOGattack;
+    var yourCharOGattack;
 
-// reprint all characters' HP values
-var reprintHP = function () {
+    // reprint all characters' HP values
+    var reprintHP = function () {
 
-    for (var i=0; i<charactersTarget.length; i++) {
-        var currentHP = charactersTarget[i].find(".figure").attr("data-hp");
-        charactersTarget[i].find(".hp").text(currentHP);
-
-        console.log(charactersTarget[i], currentHP);
-    }
-
-    console.log("reprintHP executed")
-
-}
-
-var refreshTarget = function() {
-    emmaTarget = $("#emma");
-    ryanTarget = $("#ryan");
-    johnTarget = $("#john");
-    hollywoodTarget = $("#hollywood");
-
-    charactersTarget = [emmaTarget, ryanTarget, johnTarget, hollywoodTarget];
-}
-
-// resets the game
-$(".restartBtn").on("click", function() {
-
-          $("#yourCharImg").empty();
-          $("#toAttack").empty();
-          $("#toFight").empty();
-
-          for (var i=0; i<charactersHtml.length; i++) {
-                var attrId = charactersTarget[i].attr("id");
-                var newDiv = $("<div>").attr("id", attrId).addClass("click clickYour");
-                newDiv.append(charactersHtml[i]);
-                $("#yourCharImg").append(newDiv);
-          }
-
-          refreshTarget();
-          reprintHP(); 
-}) 
-
-// choose your character and place all unchosen characters in the enemies area
-$(document).on("click", ".clickYour", function() {
-
-    var dataCounter = 0;
-    for (var i=0; i<charactersTarget.length; i++) {
-        if (charactersTarget[i].find(".figure").attr("data-your") == 1) {
-          dataCounter++;
-          yourCharOGattack = parseInt(charactersTarget[i].find(".figure").attr("data-ap"));
+        for (var i=0; i<charactersTarget.length; i++) {
+            var currentHP = parseInt(charactersTarget[i].find(".figure").attr("data-hp"));
+            charactersTarget[i].find(".hp").text(currentHP);
         }
+
     }
 
-    if (dataCounter<1) {
-          $(this).find(".figure").attr("data-your", 1);
+    // reassigns target variables and array to new locations
+    var refreshTarget = function() {
+      
+        emmaTarget = $("#emma");
+        ryanTarget = $("#ryan");
+        johnTarget = $("#john");
+        hollywoodTarget = $("#hollywood");
 
-          for (var i=0; i<charactersTarget.length; i++) {
-            if (charactersTarget[i].find("figure").attr("data-your") != 1) {
+        charactersTarget = [emmaTarget, ryanTarget, johnTarget, hollywoodTarget];
+    }
 
-                var attrId = charactersTarget[i].attr("id");
-
-                var newDiv = $("<div>").attr("id", attrId).addClass("click clickAttack");
-                newDiv.append(charactersHtml[i]);
-                newDiv.find(".characterImg").addClass("enemiesAvailable");
-                newDiv.find("figure").attr("data-attack", 1)
-
-                charactersTarget[i].remove();
-                $("#toAttack").append(newDiv);
+    // checks to see if any enemies exist...if not, alert winning message
+    var winCheck = function() {
+        var enemyCounter = 0;
+        for (var i=0; i<charactersTarget.length; i++) {
+            if (charactersTarget[i].find(".figure").attr("data-attack") == 1) {
+              enemyCounter++;
             }
-
-          refreshTarget(); 
-          }
-  }
-
-})
-
-// chosen enemies will move to defending area and allow for combat
-$(document).on("click", ".clickAttack", function() {
-
-    var dataCounter = 0;
-    for (var i=0; i<charactersTarget.length; i++) {
-        if (charactersTarget[i].find(".figure").attr("data-defender") == 1) {
-          dataCounter++;
+             else if (charactersTarget[i].find(".figure").attr("data-defender") == 1) {
+              enemyCounter++;
+            }
         }
+
+        if (enemyCounter<=0) {
+          $(".combatText").append("You have defeated all enemies! Congratulations!");
+        }
+
     }
 
-    if (dataCounter<1) {
-          $(this).find(".figure").attr("data-defender", 1).attr("data-attack", 0);
+    // resets the game
+    $(".restartBtn").on("click", function() {
 
-          var attrId = $(this).attr("id");
+              $("#yourCharImg").empty();
+              $("#toAttack").empty();
+              $("#toFight").empty();
+              $(".combatText").empty();
 
-          var newDiv = $("<div>").attr("id", attrId).addClass("click clickDefender");
-          newDiv.append($(this).html());
-          newDiv.find(".characterImg").addClass("defender");
-          newDiv.find("figure").attr("data-defender", 1)
+              $("#yourCharImg").html(originalHtml);
 
-          $(this).remove();
-          $("#toFight").append(newDiv);
+              refreshTarget();
+    }) 
 
-          refreshTarget();
-    }
-  
-})
+    // choose your character and place all unchosen characters in the enemies area
+    $(document).on("click", ".clickYour", function() {
 
-// conducts combat with your character and defending character
-$(".attackBtn").on("click", function() { 
+        var dataCounter = 0;
+        for (var i=0; i<charactersTarget.length; i++) {
+            if (charactersTarget[i].find(".figure").attr("data-your") == 1) {
+              dataCounter++;
+            }
+        }
 
-          var yourChar;
-          var yourCharCounter = 0;
-          var defendingChar;
-          var defendingCharCounter = 0;
+        if (dataCounter<1) {
+              $(this).find(".figure").attr("data-your", 1);
+              yourCharOGattack = parseInt($(this).find(".figure").attr("data-ap"));
 
-          // identify who is the attacker and defender
-          for (var i=0; i<charactersTarget.length; i++) {
-              if (charactersTarget[i].find(".figure").attr("data-your") == 1) {
-                yourChar = charactersTarget[i];
-                yourCharCounter++;
-              }
-              else if (charactersTarget[i].find(".figure").attr("data-defender") == 1) {
-                defendingChar = charactersTarget[i];
-                defendingChar++;
-              }
-          }
+              for (var i=0; i<charactersTarget.length; i++) {
+                if (charactersTarget[i].find("figure").attr("data-your") != 1) {
 
-          console.log(yourCharCounter, defendingCharCounter);
+                    var attrId = charactersTarget[i].attr("id");
 
-          if (defendingCharCounter == 1 && yourCharCounter == 1) {
+                    var newDiv = $("<div>").attr("id", attrId).addClass("click clickAttack");
+                    newDiv.append(charactersHtml[i]);
+                    newDiv.find(".characterImg").addClass("enemiesAvailable");
+                    newDiv.find("figure").attr("data-attack", 1)
 
-                // define variables for values necessary for combat
-                var yourCharAtk = parseInt(yourChar.find(".figure").attr("data-ap"));
-                var yourCharHP = yourChar.find(".figure").attr("data-hp");
-                var defendingCharCounterAtk = defendingChar.find(".figure").attr("data-cap");
-                var defendingCharHp = defendingChar.find(".figure").attr("data-hp");
-
-                // inflict damage on opponenent
-                defendingCharHp -= yourCharAtk;
-
-                // if defender is under 0 hp, remove from game and print combat text. If defender is still still alive, print combat text
-                if (defendingCharHp <= 0) {
-                  defendingChar.remove();
-                  $(".combatText").text("You have dealt " + yourCharAtk + " damage! Defending character has been defeated!");
+                    charactersTarget[i].remove();
+                    $("#toAttack").append(newDiv);
                 }
-                else {
-                  yourCharHP -= defendingCharCounterAtk;
-                  $(".combatText").text("You have dealt " + yourCharAtk + " damage! Defending character has counter-attacked for " + defendingCharCounterAtk + " damage! ");
-                  
-                  if (yourCharHP <= 0) {
-                      $(".combatText").append("You have been defeated! Try again!");
+
+              refreshTarget(); 
+              }
+      }
+
+    })
+
+    // chosen enemies will move to defending area and allow for combat
+    $(document).on("click", ".clickAttack", function() {
+
+        var dataCounter = 0;
+        for (var i=0; i<charactersTarget.length; i++) {
+            if (charactersTarget[i].find(".figure").attr("data-defender") == 1) {
+              dataCounter++;
+            }
+        }
+
+        if (dataCounter<1) {
+              $(this).find(".figure").attr("data-defender", 1).attr("data-attack", 0);
+
+              var attrId = $(this).attr("id");
+
+              var newDiv = $("<div>").attr("id", attrId).addClass("click clickDefender");
+              newDiv.append($(this).html());
+              newDiv.find(".characterImg").addClass("defender");
+              newDiv.find("figure").attr("data-defender", 1)
+
+              $(this).remove();
+              $("#toFight").append(newDiv);
+
+              refreshTarget();
+        }
+      
+    })
+
+    // conducts combat with your character and defending character
+    $(".attackBtn").on("click", function() { 
+
+              var yourChar;
+              var yourCharCounter = 0;
+              var defendingChar;
+              var defendingCharCounter = 0;
+
+              console.log(charactersTarget);
+
+              // identify who is the attacker and defender
+              for (var i=0; i<charactersTarget.length; i++) {
+                  if (charactersTarget[i].find(".figure").attr("data-your") == 1) {
+                    yourChar = charactersTarget[i];
+                    yourCharCounter++;
                   }
+                  else if (charactersTarget[i].find(".figure").attr("data-defender") == 1) {
+                    defendingChar = charactersTarget[i];
+                    defendingCharCounter++;
+                  }
+              }
 
-                }
+              if (defendingCharCounter == 1 && yourCharCounter == 1) {
 
-                // scale up your damage and reprint new HP values
-                yourCharAtk += yourCharOGattack;
+                    // define variables for values necessary for combat
+                    var yourCharAtk = parseInt(yourChar.find(".figure").attr("data-ap"));
+                    var yourCharHP = parseInt(yourChar.find(".figure").attr("data-hp"));
+                    var defendingCharCounterAtk = parseInt(defendingChar.find(".figure").attr("data-cap"));
+                    var defendingCharHp = parseInt(defendingChar.find(".figure").attr("data-hp"));
 
-                yourChar.find(".figure").attr("data-ap", yourCharAtk);
-                yourChar.find(".figure").attr("data-hp", yourCharHP);
-                // defendingChar.find(".figure").attr("data-hp", defendingCharHp);
+                    // inflict damage on opponenent
+                    defendingCharHp -= yourCharAtk;
 
-                reprintHP();
-                refreshTarget();
+                    // if defender is under 0 hp, remove from game and print combat text. If defender is still still alive, print combat text
+                    if (defendingCharHp <= 0) {
+                      defendingChar.remove();
+                      $(".combatText").text("You have dealt " + yourCharAtk + " damage! Defending character has been defeated! ");
+                    }
+                    else {
+                      yourCharHP -= defendingCharCounterAtk;
+                      $(".combatText").text("You have dealt " + yourCharAtk + " damage! Defending character has counter-attacked for " + defendingCharCounterAtk + " damage! ");
+                      
+                      if (yourCharHP <= 0) {
+                          $(".combatText").append("You have been defeated! Try again!");
+                          yourChar.remove();
+                      }
 
-          }
-})  
+                    }
 
+                    // scale up your damage and reprint new HP values
+                    yourCharAtk += yourCharOGattack;
 
+                    yourChar.find(".figure").attr("data-ap", yourCharAtk);
+                    yourChar.find(".figure").attr("data-hp", yourCharHP);
+                    defendingChar.find(".figure").attr("data-hp", defendingCharHp);
 
+                    reprintHP();
+                    refreshTarget();
+                    winCheck();
+
+              }
+    })  
+
+})
 
